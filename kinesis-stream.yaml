@@ -1,0 +1,17 @@
+apiVersion: kinesis.aws.crossplane.io/v1alpha1
+kind: Stream
+metadata:
+  annotations:
+    crossplane.io/external-name: INFINITY_STREAM_DEVELOPMENT
+  name: infinity-stream
+spec:
+  forProvider:
+    region: eu-central-1
+    shardCount: 4
+    retentionPeriodHours: 24
+    enhancedMetrics:
+      - shardLevelMetrics:
+          - IncomingBytes
+          - OutgoingBytes
+  providerConfigRef:
+    name: localstack-config
